@@ -1,12 +1,11 @@
 /*
  *YouTube : https://www.youtube.com/watch?v=3Yda5CoTSJA
  *
- *JohnDoesStuffさんが書いたDesmoslockです
- *https://github.com/johndoesstuff/desmoslock/blob/master/dlock.js
+ *JohnDoesStuffさんが書いたDesmoslockを参考にDesmosPaintingを作ってみました。
+ *YouTube : https://www.youtube.com/watch?v=3Yda5CoTSJA
  *
  */
-//Desmosでお絵描きツールを作成するためだけに作りました。
-//change by @TETH_Main
+//made by @TETH_Main
 
 if (window.location.href.includes("desmos.com/calculator")) {
 	if (typeof Calc != "undefined") { //thanks u/SlimRunner
