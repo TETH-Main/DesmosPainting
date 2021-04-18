@@ -8,11 +8,12 @@
 //made by @TETH_Main
 
 if (window.location.href.includes("desmos.com/calculator")) {
-	if (typeof Calc != "undefined") { //thanks u/SlimRunner
+	if (typeof Calc != "undefined") {
 		var DesmosPaint = {};
 
 		DesmosPaint.rgb = function(H, S, V) {
-			//https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSV
+			// https://qiita.com/akebi_mh/items/3377666c26071a4284ee
+			// https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSV
 
 			var C = V * S;
 			var Hp = H / 60;
