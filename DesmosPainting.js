@@ -68,10 +68,19 @@ if (window.location.href.includes("desmos.com/calculator")) {
 					expr.latex = '\\left(x_{0}t^{2}+2x_{1}t\\left(1-t\\right)+x_{2}\\left(1-t\\right)^{2},y_{0}t^{2}+2y_{1}t\\left(1-t\\right)+y_{2}\\left(1-t\\right)^{2}\\right)';
 					break;
 				case 1:
-					expr.latex = '\\left(x_{3}t+x_{4}\\left(1-t\\right),y_{3}t+y_{4}\\left(1-t\\right)\\right)';
+					expr.latex = '\\left(x_{0}t+x_{2}\\left(1-t\\right),y_{0}t+y_{2}\\left(1-t\\right)\\right)';
 					break;
 				case 2:
-					expr.latex = '\\left(r_{0}\\cos\\left(\\theta_{0}\\right)\\cos\\left(\\tau t\\right)-r_{1}\\sin\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)+x_{5},r_{0}\\sin\\left(\\theta_{0}\\right)\\cos\\left(\\tau t\\right)+r_{1}\\cos\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)+y_{5}\\right)';
+					expr.latex = '\\left(r_{0}\\cos\\left(\\theta_{0}\\right)\\cos\\left(\\tau t\\right)-r_{1}\\sin\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)+x_{0},r_{0}\\sin\\left(\\theta_{0}\\right)\\cos\\left(\\tau t\\right)+r_{1}\\cos\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)+y_{0}\\right)';
+					break;
+				case 3:
+					expr.latex = '\\left(2\\left(x_{2}-x_{0}\\right)\\left(\\left|t\\right|-\\left|t-.25\\right|-\\left|t-.5\\right|+\\left|t-.75\\right|\\right)+x_{0},2\\left(y_{2}-y_{0}\\right)\\left(\\left|t-.25\\right|-\\left|t-.5\\right|-\\left|t-.75\\right|+\\left|t-1\\right|\\right)+y_{0}\\right)';
+					break;
+				case 4:
+					expr.latex = '\\left(2\\left(x_{2}-x_{0}\\right)\\cos\\left(\\theta_{0}\\right)\\left(\\left|t\\right|-\\left|t-.25\\right|-\\left|t-.5\\right|+\\left|t-.75\\right|\\right)-2\\left(y_{2}-y_{0}\\right)\\sin\\left(\\theta_{0}\\right)\\left(\\left|t-.25\\right|-\\left|t-.5\\right|-\\left|t-.75\\right|+\\left|t-1\\right|\\right)+x_{0},2\\left(x_{2}-x_{0}\\right)\\sin\\left(\\theta_{0}\\right)\\left(\\left|t\\right|-\\left|t-.25\\right|-\\left|t-.5\\right|+\\left|t-.75\\right|\\right)+2\\left(y_{2}-y_{0}\\right)\\cos\\left(\\theta_{0}\\right)\\left(\\left|t-.25\\right|-\\left|t-.5\\right|-\\left|t-.75\\right|+\\left|t-1\\right|\\right)+y_{0}\\right)';
+					break;
+				case 5:
+					expr.latex = '\\operatorname{polygon}\\left(\\left[x_{0},x_{1},x_{2}\\right],\\left[y_{0},y_{1},y_{2}\\right]\\right)';
 					break;
 				default:
 					expr.latex = '0';
@@ -85,7 +94,7 @@ if (window.location.href.includes("desmos.com/calculator")) {
 			expr.lineWidth = valuesItem[0];
 			expr.lineOpacity = valuesItem[1];
 			expr.fillOpacity = valuesItem[2];
-	
+
 			var Rgb = DesmosPaint.rgb(valuesItem[3], valuesItem[4], valuesItem[5]);
 
 			var hexRed = DesmosPaint.hex(Rgb[0]);
