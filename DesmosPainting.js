@@ -10,22 +10,9 @@
 
 if (window.location.href.includes("desmos.com/calculator")) {
 	if (typeof Calc != "undefined") { //thanks u/SlimRunner
-		var DLock = {};
-		DLock.getLock = function() { //gets the array of all lockable variables
-			var expressions = Calc.getState().expressions.list;
-			for (var i = 0; i < expressions.length; i++) {
-				if (expressions[i].latex) if (expressions[i].latex.startsWith("l_{ock}")) return expressions[i].id;
-			}
-		}
+		var DesmosPaint = {};
 
-		DLock.getItem = function() {
-			var expressions = Calc.getState().expressions.list;
-			for (var i = 0; i < expressions.length; i++) {
-				if (expressions[i].latex) if (expressions[i].latex.startsWith("i_{tem}")) return expressions[i].id;
-			}
-		}
-
-		DLock.rgb = function(H, S, V) {
+		DesmosPaint.rgb = function(H, S, V) {
 			//https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSV
 
 			var C = V * S;
@@ -50,7 +37,7 @@ if (window.location.href.includes("desmos.com/calculator")) {
 			return [R ,G, B];
 		}
 
-		DLock.hex = function (c) {
+		DesmosPaint.hex = function (c) {
 			if (c < 16) {
 				return "0" + c.toString(16);
 			} else {
@@ -58,25 +45,37 @@ if (window.location.href.includes("desmos.com/calculator")) {
 			}
 		}
 
-		DLock.lastSelectedExpression = false;
-		DLock.set = function() {
-			if (Calc.isAnyExpressionSelected) DLock.lastSelectedExpression = Calc.selectedExpressionId;
-			var selected = DLock.lastSelectedExpression;
-			if (selected === false) {
-				window.alert("Please select an expression");
-				return
-			}
-			var id = DLock.getLock();
-			var idItem = DLock.getItem();
+		// DesmosPaint.lastSelectedExpression = false;
+		DesmosPaint.set = function() {
+
+			var id = DesmosPaint.getId("l_{ock}");
+			var idItem = DesmosPaint.getId("i_{tem}");
+			var idPen = DesmosPaint.getId("p_{en}");
 
 			var lock = Calc.expressionAnalysis[id];
 			var item = Calc.expressionAnalysis[idItem];
+			var pen = Calc.expressionAnalysis[idPen];
 
 			var values = lock.evaluation.value;
 			var valuesItem = item.evaluation.value;
+			var valuePen = pen.evaluation.value;
 
-			var vars = DLock.getExpression(id).latex.split("[")[1].split("\\right]")[0].split(",");
-			var expr = DLock.getExpression(selected);
+			var vars = DesmosPaint.getExpression(id).latex.split("[")[1].split("\\right]")[0].split(",");
+			var expr = DesmosPaint.getExpression(DesmosPaint.getId("\\left(t+2^{1023},0\\right)"));
+
+			switch (valuePen) {
+				case 0:
+					expr.latex = '\\left(x_{0}t^{2}+2x_{1}t\\left(1-t\\right)+x_{2}\\left(1-t\\right)^{2},y_{0}t^{2}+2y_{1}t\\left(1-t\\right)+y_{2}\\left(1-t\\right)^{2}\\right)';
+					break;
+				case 1:
+					expr.latex = '\\left(x_{3}t+x_{4}\\left(1-t\\right),y_{3}t+y_{4}\\left(1-t\\right)\\right)';
+					break;
+				case 2:
+					expr.latex = '\\left(r_{0}\\cos\\left(\\theta_{0}\\right)\\cos\\left(\\tau t\\right)-r_{1}\\sin\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)+x_{5},r_{0}\\sin\\left(\\theta_{0}\\right)\\cos\\left(\\tau t\\right)+r_{1}\\cos\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)+y_{5}\\right)';
+					break;
+				default:
+					expr.latex = '0';
+			}
 			var currentLatex = expr.latex;
 			for (var i = 0; i < vars.length; i++) {
 				currentLatex = currentLatex.split(vars[i]).join("\\left(" + values[i] + "\\right)");
@@ -87,29 +86,35 @@ if (window.location.href.includes("desmos.com/calculator")) {
 			expr.lineOpacity = valuesItem[1];
 			expr.fillOpacity = valuesItem[2];
 	
-			var Rgb = DLock.rgb(valuesItem[3], valuesItem[4], valuesItem[5]);
+			var Rgb = DesmosPaint.rgb(valuesItem[3], valuesItem[4], valuesItem[5]);
 
-			var hexRed = DLock.hex(Rgb[0]);
-			var hexBlue = DLock.hex(Rgb[1]);
-			var hexGreen = DLock.hex(Rgb[2]);
+			var hexRed = DesmosPaint.hex(Rgb[0]);
+			var hexBlue = DesmosPaint.hex(Rgb[1]);
+			var hexGreen = DesmosPaint.hex(Rgb[2]);
 
 			expr.color = "#" + hexRed + hexBlue + hexGreen;
 
-			expr.id = "dlock" + (new Date()).getTime();
+			expr.id = "desmospaint" + (new Date()).getTime();
 			Calc.setExpression(expr);
 		}
-		DLock.getExpression = function(id) {
+		DesmosPaint.getExpression = function(id) {
 			var expressions = Calc.getState().expressions.list;
 			for (var i = 0; i < expressions.length; i++) {
 				if (expressions[i].id === id) return expressions[i]; 
 			}
 		}
-		DLock.handler = function(e) {
-			if (e.altKey && ((e.code == "KeyL") || (e.key == "l"))) {
-				DLock.set();
+		DesmosPaint.getId = function(e) {
+			var expressions = Calc.getState().expressions.list;
+			for (var i = 0; i < expressions.length; i++) {
+				if (expressions[i].latex) if (expressions[i].latex.startsWith(e)) return expressions[i].id;
 			}
 		}
-		document.addEventListener('keyup', DLock.handler);
+		DesmosPaint.handler = function(e) {
+			if (e.altKey && ((e.code == "KeyL") || (e.key == "l"))) {
+				DesmosPaint.set();
+			}
+		}
+		document.addEventListener('keyup', DesmosPaint.handler);
 	} else {
 		window.alert("uh oh, something went wrong")
 	}
