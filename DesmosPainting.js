@@ -82,10 +82,10 @@ if (window.location.href.includes("desmos.com/calculator")) {
 					expr.latex = '\\operatorname{polygon}\\left(\\left[x_{0},x_{1},x_{2}\\right],\\left[y_{0},y_{1},y_{2}\\right]\\right)';
 					break;
 				case 6:
-					expr.latex = '\\left(x_{0}t+\\left(1-t\\right)x_{2},y_{0}\\right)';
+					expr.latex = '\\left(x_{0}t+\\left(1-t\\right)x_{3},y_{0}\\right)';
 					break;
 				case 7:
-					expr.latex = '\\left(x_{0},y_{0}t+\\left(1-t\\right)y_{2}\\right)';
+					expr.latex = '\\left(x_{0},y_{0}t+\\left(1-t\\right)y_{3}\\right)';
 					break;
 				default:
 					expr.latex = '0';
