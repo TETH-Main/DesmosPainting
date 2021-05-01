@@ -4,6 +4,11 @@
  *JohnDoesStuffさんが書いたDesmoslockを参考にDesmosPaintingを作ってみました。
  *YouTube : https://www.youtube.com/watch?v=3Yda5CoTSJA
  *
+ * Latest v1.2 https://www.desmos.com/calculator/a83pgvuelb
+ *
+ * v1.0 https://www.desmos.com/calculator/okpewnykir
+ * v1.1 https://www.desmos.com/calculator/86of36rsz9
+ * v1.2 https://www.desmos.com/calculator/a83pgvuelb
  */
 
 if (window.location.href.includes("desmos.com/calculator")) {
@@ -44,7 +49,6 @@ if (window.location.href.includes("desmos.com/calculator")) {
 			}
 		}
 
-		// DesmosPaint.lastSelectedExpression = false;
 		DesmosPaint.set = function() {
 
 			var id = DesmosPaint.getId("l_{ock}");
@@ -86,6 +90,12 @@ if (window.location.href.includes("desmos.com/calculator")) {
 					break;
 				case 7:
 					expr.latex = '\\left(x_{0},y_{0}t+\\left(1-t\\right)y_{3}\\right)';
+					break;
+				case 8:
+					expr.latex = '\\left(x_{2}-x_{0}\\right)\\left(.55\\sin\\left(\\tau t\\right)\\right),\\left(y_{2}-y_{0}\\right)\\left(.5\\cos\\left(\\tau t\\right)+.3\\sqrt{\\left|\\sin\\left(\\tau t\\right)\\right|}\\right)+\\frac{\\left(x_{0}+x_{2},y_{0}+y_{2}\\right)}{2}';
+					break;
+				case 9:
+					expr.latex = '\\left(\\left(x_{2}-x_{0}\\right)\\left(.55\\cos\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)-\\sin\\left(\\theta_{0}\\right)\\left(.5\\cos\\left(\\tau t\\right)+.3\\sqrt{\\left|\\sin\\left(\\tau t\\right)\\right|}\\right)\\right),\\left(y_{2}-y_{0}\\right)\\left(.55\\sin\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)+\\cos\\left(\\theta_{0}\\right)\\left(.5\\cos\\left(\\tau t\\right)+.3\\sqrt{\\left|\\sin\\left(\\tau t\\right)\\right|}\\right)\\right)\\right)+\\frac{\\left(x_{0}+x_{2},y_{0}+y_{2}\\right)}{2}';
 					break;
 				default:
 					expr.latex = '0';
