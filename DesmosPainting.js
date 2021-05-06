@@ -98,8 +98,9 @@ if (window.location.href.includes("desmos.com/calculator")) {
 				case 9:
 					expr.latex = '\\left(\\left(x_{2}-x_{0}\\right)\\left(.55\\cos\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)-\\sin\\left(\\theta_{0}\\right)\\left(.5\\cos\\left(\\tau t\\right)+.3\\sqrt{\\left|\\sin\\left(\\tau t\\right)\\right|}\\right)\\right),\\left(y_{2}-y_{0}\\right)\\left(.55\\sin\\left(\\theta_{0}\\right)\\sin\\left(\\tau t\\right)+\\cos\\left(\\theta_{0}\\right)\\left(.5\\cos\\left(\\tau t\\right)+.3\\sqrt{\\left|\\sin\\left(\\tau t\\right)\\right|}\\right)\\right)\\right)+\\frac{\\left(x_{0}+x_{2},y_{0}+y_{2}\\right)}{2}';
 					break;
-					case 10:
+				case 10:
 					expr.latex = '\\left(t^{3}x_{0}+3t^{2}\\left(1-t\\right)x_{1}+3t\\left(1-t\\right)^{2}x_{2}+\\left(1-t\\right)^{3}x_{3},t^{3}y_{0}+3t^{2}\\left(1-t\\right)y_{1}+3t\\left(1-t\\right)^{2}y_{2}+\\left(1-t\\right)^{3}y_{3}\\right)';
+					break;
 				default:
 					expr.latex = '0';
 			}
