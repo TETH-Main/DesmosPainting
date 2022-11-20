@@ -4,7 +4,7 @@
  *JohnDoesStuffさんが書いたDesmoslockを参考にDesmosPaintingを作ってみました。
  *YouTube : https://www.youtube.com/watch?v=3Yda5CoTSJA
  *
- * Latest v1.2 https://www.desmos.com/calculator/a83pgvuelb
+ * Latest v1.4 https://www.desmos.com/calculator/vt0jua34de
  *
  * v1.0 https://www.desmos.com/calculator/okpewnykir
  * v1.1 https://www.desmos.com/calculator/86of36rsz9
